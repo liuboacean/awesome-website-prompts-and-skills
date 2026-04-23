@@ -43,17 +43,17 @@
 
 ## 📦 仓库内容速览（挑战赛官方示例）
 
-### [Prompts](./official-prompts)
+### [Prompts](./prompts)
 
 | 名称 | 类型 | 技术栈 |
 |---|---|---|
-| [Luxury Jewelry Ecommerce Website](./official-prompts/luxury-jewelry-ecommerce-website.md) | 奢侈品珠宝电商单页站 | React + Vite + TS + Tailwind + shadcn/ui + Edge Functions |
+| [Luxury Jewelry Ecommerce Website](./prompts/luxury-jewelry-ecommerce-website.md) | 奢侈品珠宝电商单页站 | React + Vite + TS + Tailwind + shadcn/ui + Edge Functions |
 
-### [Skills](./official-skills)
+### [Skills](./skills)
 
 | 名称 | 功能 | 场景 |
 |---|---|---|
-| [ai-saas-skill](./official-skills/ai-saas-skill) | 基于 `TencentEdgeOne/saas-starter` 模板，交互式搭建 SaaS 网站并部署到 EdgeOne Pages | AI SaaS、卖课、AI 工具站 |
+| [ai-saas-skill](./skills/ai-saas-skill) | 基于 `TencentEdgeOne/saas-starter` 模板，交互式搭建 SaaS 网站并部署到 EdgeOne Pages | AI SaaS、卖课、AI 工具站 |
 
 ---
 
@@ -77,7 +77,7 @@ https://github.com/TencentEdgeOne/awesome-website-prompts-and-skills
 https://github.com/TencentEdgeOne/edgeone-pages-skills
 
 请完成以下任务：
-1. 阅读【1】中 official-prompts/ 和 official-skills/ 下所有示例，并阅读【2】中 edgeone-pages-dev 与 edgeone-pages-deploy 两个 Skill
+1. 阅读【1】中 prompts/ 和 skills/ 下所有示例，并阅读【2】中 edgeone-pages-dev 与 edgeone-pages-deploy 两个 Skill
 2. 帮我分析：一个合格的建站 Prompt / Skill，应该包含哪些结构、字段和信息密度；以及 EdgeOne Pages 提供了哪些可以被我调用的开发与部署能力
 3. 我要参加「WorkBuddy × Tencent EdgeOne AI Prompts × Skills 挑战赛」，
    我的参赛想法是：___（在这里描述你的创意方向）
