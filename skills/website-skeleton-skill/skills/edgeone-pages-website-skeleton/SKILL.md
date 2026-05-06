@@ -216,3 +216,37 @@ edgeone pages deploy -n <project-name>
 - Password: bcrypt cost ≥ 12
 
 **Template repos:** https://github.com/TencentEdgeOne/edgeone-pages-skills
+
+
+---
+
+## ⚠️ 安全与合规说明
+
+### 1. 部署确认机制
+AI Agent 部署前会显示待部署文件清单和变更概要，请求用户确认后执行部署。
+
+### 2. 支付安全
+- 支付回调实现 HMAC-SHA256 签名验证（微信官方算法）
+- 校验 appid/mchid 商户身份一致性
+- 校验回调金额与订单金额完全匹配
+- 仅接受 result_code=SUCCESS 的交易状态
+- KV 幂等锁防止重复回调处理
+
+### 3. 数据保留策略
+| 数据类型 | 存储位置 | 保留期限 |
+|---------|---------|---------|
+| KV Session | EdgeOne KV | 7 天 TTL |
+| AI 聊天历史 | EdgeOne KV | 30 天 TTL |
+| 审计日志 | EdgeOne KV | 90 天 TTL |
+| 订单数据 | MySQL | 永久（业务必需）|
+
+### 4. Cron 定时任务
+- PENDING 超时 30 分钟 → CANCELLED
+- SHIPPED 超过 7 天 → COMPLETED
+- 提供一键禁用脚本 `cloud-functions/cron/disable-cron.js`
+
+### 5. 使用建议
+- 在测试项目中验证全部功能
+- 使用测试/沙箱商户号
+- 部署前审查生成的代码和环境变量
+- 启用真实支付前完成签名验证测试
