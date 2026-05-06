@@ -168,3 +168,20 @@ class AIChatWidget extends HTMLElement {
 }
 customElements.define('ai-chat-widget', AIChatWidget);
 ```
+
+## 六、安全注意事项
+
+### 6.1 会话所有权校验（必须实现）
+
+AI Chat 的会话历史存储在 KV 中，**必须校验当前用户是否为会话所有者**。参见个人仓库中的完整实现：
+https://github.com/liuboacean/website-skeleton-skill
+
+### 6.2 数据清理
+
+- AI 聊天历史建议设置 KV TTL（如 30 天）
+- 用户注销时应提供清除聊天历史的选项
+- 不在客户端持久化完整的聊天历史
+
+### 6.3 限流
+
+已登录用户 60 次/分钟，未登录用户 10 次/分钟。
