@@ -2,14 +2,8 @@ name: Validate Skills & Prompts
 
 on:
   pull_request:
-    paths:
-      - 'skills/**'
-      - 'prompts/**'
   push:
     branches: [main]
-    paths:
-      - 'skills/**'
-      - 'prompts/**'
 
 jobs:
   validate:
@@ -23,7 +17,6 @@ jobs:
           ERRORS=0
           while IFS= read -r f; do
             if head -1 "$f" | grep -q "^---$"; then
-              # Has frontmatter - check required fields
               if ! head -20 "$f" | grep -q "^name:"; then
                 echo "::error file=$f::Missing 'name' in frontmatter"
                 ERRORS=$((ERRORS+1))
@@ -46,7 +39,6 @@ jobs:
           ERRORS=0
           while IFS= read -r f; do
             if grep -q '\[.*\](\.\/' "$f" 2>/dev/null; then
-              # Check all relative links resolve
               dir=$(dirname "$f")
               while IFS= read -r link; do
                 target=$(echo "$link" | sed -n 's/.*\[.*\](\([^)]*\)).*/\1/p')
@@ -64,7 +56,6 @@ jobs:
       - name: Validate directory structure
         run: |
           echo "::group::Validating directory structure"
-          # Check skills follow correct structure
           for skill_dir in skills/*/; do
             name=$(basename "$skill_dir")
             echo "Checking $name..."
